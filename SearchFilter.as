@@ -45,6 +45,8 @@ package {
 		
 		public function createFilter(): void {
 		
+			// CHECK FILTERS, ADD
+		
 			customFormat.color = 0x7A7A7A;
 			customFormat.size = 12;
 			customFormat.font = "Helvetica";

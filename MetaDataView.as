@@ -39,7 +39,7 @@ package {
 			var searchContent: XMLList = xmlData.marken_liste.marke.(schluessel == "Stichwort Bildinhalt").wert;
 			for each (var thisContent: String in searchContent) {
 				// BIG TODO pushing string to array throws error
-				imgContent.push(thisContent);
+				imgContent.push(thisContent.toString());
 			}
 		
 		}

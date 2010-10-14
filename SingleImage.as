@@ -86,11 +86,10 @@ package {
 			
 			// display meta data view
 			var displayMetaDataView: MetaDataView = new MetaDataView(imgID);
-			globals.myStage.addChild(displayMetaDataView);
+			globals.myStage.addChild(displayMetaDataView);			
+			globals.myStage.destroySingleImage();
 			
 			/*
-			
-			globals.myStage.destroySingleImage();
 		
 			for each (var newImg in globals.imgList) {
 				TweenLite.to(newImg, 1, {alpha:1});
