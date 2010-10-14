@@ -397,12 +397,13 @@ package {
 			switch (elementName) {
 			
 				case "inputNewSearch":
-					var newSearch: SearchImages = new SearchImages(globals.guiObjects[elementName].text);
 					globals.myStage.destroyActiveFilters();
+					var newSearch: NewSearch = new NewSearch(globals.guiObjects[elementName].text);
 					break;
 					
 				case "inputNewFilter":
-					// TODO
+					var newSearchFilter: SearchFilter = new SearchFilter(globals.guiObjects[elementName].text);
+					globals.myStage.addChild(newSearchFilter);
 					break;
 					
 				case "refreshButton":
