@@ -57,17 +57,17 @@ package {
 			customTextField.selectable = false;
 			
 			customTextField.defaultTextFormat = customFormat;
-			customTextField.text = filterName + " " + resultCount;
-			customTextField.x = 20;
-			customTextField.y = 60 + (filterCount * 30);
-			customTextField.autoSize = TextFieldAutoSize.LEFT;
+			customTextField.text = filterName + "      " + resultCount;
+			customTextField.x = 170;
+			customTextField.y = 100 + (filterCount * 30);
+			customTextField.autoSize = TextFieldAutoSize.RIGHT;
 			
 			addChild(customTextField);
 			
 			var customButton: Loader = new Loader();
 			var customRequest: URLRequest = new URLRequest("img/del.png");
 			customButton.load(customRequest);
-			customButton.x = 5 + customTextField.x + customTextField.width;
+			customButton.x = 282;
 			customButton.y = customTextField.y - 3;
 			
 			customButton.addEventListener(MouseEvent.CLICK, onClick);
@@ -117,8 +117,47 @@ package {
 						break;
 				}
 			}
-			trace(globals.filterIDs1);
-			trace(globals.activeFilters.length);
+			
+			globals.searchIDs = [];
+			switch (globals.activeFilters.length)
+				{
+					case 0 :
+						globals.myStage.createRandomImages();
+					case 1 : 
+						globals.searchIDs = globals.filterIDs1;
+						break;
+					case 2 :
+						var result2 = schnitt(globals.filterIDs1, globals.filterIDs2);
+						globals.searchIDs = result2;
+						break;
+					case 3 :
+						var result2 = schnitt(globals.filterIDs1, globals.filterIDs2);
+						var result3 = schnitt(result2, globals.filterIDs3);
+						globals.searchIDs = result3;
+						break;
+					case 4 :
+						var result2 = schnitt(globals.filterIDs1, globals.filterIDs2);
+						var result3 = schnitt(result2, globals.filterIDs3);
+						var result4 = schnitt(result3, globals.filterIDs4);
+						globals.searchIDs = result4;
+						break;
+					case 5 :
+						var result2 = schnitt(globals.filterIDs1, globals.filterIDs2);
+						var result3 = schnitt(result2, globals.filterIDs3);
+						var result4 = schnitt(result3, globals.filterIDs4);
+						var result5 = schnitt(result4, globals.filterIDs5);
+						globals.searchIDs = result5;
+						break;
+				}
+				
+				globals.guiObjects["labelTotalResults"].text = "Current total results   " + globals.searchIDs.length;
+				
+				// create images
+				globals.myStage.destroyImgList();
+				var newImageDisplay: ImageDisplay = new ImageDisplay(globals.searchIDs);
+				
+			//trace(globals.filterIDs1);
+			//trace(globals.activeFilters.length);
 		
 		}
 		
@@ -132,7 +171,28 @@ package {
 			}
 			
 			var newRedoFilterList: RedoFilterList = new RedoFilterList(filterItemsRedo);
+			
+			if (globals.activeFilters.length == 0) {
+				globals.myStage.createRandomImages();
+			}
 		
+		}
+		
+		public function schnitt(ina, inb)
+		{
+			var schnittlist: Array = new Array();
+			for (var i:Number = 0; i < ina.length; i++)
+			{
+				for (var p:Number = 0; p < inb.length; p++)
+				{
+					if (ina[i] == inb[p])
+					{
+						schnittlist.push(ina[i]);
+					}
+				}
+			}
+			return schnittlist;
+
 		}
 		
 	}

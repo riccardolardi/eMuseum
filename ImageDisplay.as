@@ -64,10 +64,17 @@ package {
 			if (paging == false) {
 			
 				globals.totalResults = searchIDs.length;
-				globals.guiObjects["buttonRefresh"].text = "Refresh " + globals.totalResults;
-				
 				updatePager();
 			
+			}
+			
+			// delete suggestions
+			globals.myStage.destroyActiveSuggestions();
+			
+			// create suggestions
+			for (var l: Number = 0; l <= Math.round(Math.random() * 7 + 3); l++) {
+				var newSuggestion: SearchSuggestion = new SearchSuggestion();
+				globals.myStage.addChild(newSuggestion);
 			}
 		
 		}

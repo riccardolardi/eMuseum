@@ -57,17 +57,14 @@ package {
 				TweenLite.to(newImg, 1, {alpha:0});
 			}
 			
+			TweenLite.to(globals.guiObjects["labelTotalResults"], 1, {alpha:0});
 			TweenLite.to(globals.guiObjects["labelPage"], 1, {alpha:0});
 			TweenLite.to(globals.guiObjects["buttonPageBack"], 1, {alpha:0});
 			TweenLite.to(globals.guiObjects["labelPageCurrent"], 1, {alpha:0});
 			TweenLite.to(globals.guiObjects["buttonPageForward"], 1, {alpha:0});
 			TweenLite.to(globals.guiObjects["labelPageOf"], 1, {alpha:0});
 			TweenLite.to(globals.guiObjects["labelPageTotal"], 1, {alpha:0});
-			
-			TweenLite.to(globals.guiObjects["labelSort"], 1, {alpha:0});
-			TweenLite.to(globals.guiObjects["buttonSortName"], 1, {alpha:0});
-			TweenLite.to(globals.guiObjects["buttonSortDate"], 1, {alpha:0});
-			TweenLite.to(globals.guiObjects["buttonSortCountry"], 1, {alpha:0});
+			TweenLite.to(globals.guiObjects["infoRule"], 1, {alpha:0});
 			
 			newImage.x = 450;
 			newImage.y = 100;
@@ -86,28 +83,9 @@ package {
 			
 			// display meta data view
 			var displayMetaDataView: MetaDataView = new MetaDataView(imgID);
-			globals.myStage.addChild(displayMetaDataView);			
+			globals.metaView = displayMetaDataView;
+			globals.myStage.addChild(displayMetaDataView);	
 			globals.myStage.destroySingleImage();
-			
-			/*
-		
-			for each (var newImg in globals.imgList) {
-				TweenLite.to(newImg, 1, {alpha:1});
-			}
-			
-			TweenLite.to(globals.guiObjects["labelPage"], 1, {alpha:1});
-			TweenLite.to(globals.guiObjects["buttonPageBack"], 1, {alpha:1});
-			TweenLite.to(globals.guiObjects["labelPageCurrent"], 1, {alpha:1});
-			TweenLite.to(globals.guiObjects["buttonPageForward"], 1, {alpha:1});
-			TweenLite.to(globals.guiObjects["labelPageOf"], 1, {alpha:1});
-			TweenLite.to(globals.guiObjects["labelPageTotal"], 1, {alpha:1});
-			
-			TweenLite.to(globals.guiObjects["labelSort"], 1, {alpha:1});
-			TweenLite.to(globals.guiObjects["buttonSortName"], 1, {alpha:1});
-			TweenLite.to(globals.guiObjects["buttonSortDate"], 1, {alpha:1});
-			TweenLite.to(globals.guiObjects["buttonSortCountry"], 1, {alpha:1});
-			
-			*/
 		
 		}
 		

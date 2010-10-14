@@ -20,9 +20,6 @@ package {
 		
 			trace("NewSearch: new search started with term: " + searchTerm);
 			
-			// remove all images
-			globals.myStage.destroyImgList();
-			
 			xmlLoader.addEventListener(Event.COMPLETE, loadedXML);
 			xmlLoader.load(new URLRequest("http://mia-web.zhdk.ch/sobjekte/xml_suche/" + searchTerm));
 		
@@ -44,9 +41,6 @@ package {
 				globals.searchIDs.push(newID);
 				
 			}
-			
-			// create images
-			var newImageDisplay: ImageDisplay = new ImageDisplay(globals.searchIDs);
 			
 			// new filter
 			var newSearchFilter: SearchFilter = new SearchFilter(searchTerm);

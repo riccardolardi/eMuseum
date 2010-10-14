@@ -29,7 +29,7 @@ package {
 			createHeader();
 			createFilter();
 			createSuggestions();
-			createSort();
+			createLabelTotalResults();
 			createPager();
 			
 			// load random images
@@ -67,22 +67,16 @@ package {
 		
 			// create suggestions area
 			var areaSuggestions: GUIelement = new GUIelement("areaSuggestions");
+			
+			// create suggestions title
+			var titleSuggestions: GUIelement = new GUIelement("titleSuggestions");
 		
 		}
 		
-		public function createSort(): void {
+		public function createLabelTotalResults(): void {
 		
-			// create sort label
-			var labelSort: GUIelement = new GUIelement("labelSort");
-			
-			// create sort date button
-			var buttonSortDate: GUIelement = new GUIelement("buttonSortDate");
-			
-			// create sort name button
-			var buttonSortName: GUIelement = new GUIelement("buttonSortName");
-			
-			// create sort country button
-			var buttonSortCountry: GUIelement = new GUIelement("buttonSortCountry");
+			// create total result count
+			var labelTotalResults: GUIelement = new GUIelement("labelTotalResults");
 		
 		}
 		
@@ -114,22 +108,23 @@ package {
 			
 				destroyImgList();
 			
-			} else {
-		
-				// create 12 images
-				for (var i: Number = 0; i <= 11; i++) {
+			}
+			
+			globals.searchIDs = [];
+	
+			// create 12 images
+			for (var i: Number = 0; i <= 11; i++) {
+			
+				// random id
+				var rndID: Number = Math.round(Math.random() * 6000) + 2500;
 				
-					// random id
-					var rndID: Number = Math.round(Math.random() * 6000) + 2500;
-					
-					// fill searchIDs
-					globals.searchIDs.push(rndID);
-					
-				}
-				
-				var newImageDisplay: ImageDisplay = new ImageDisplay(globals.searchIDs);
+				// fill searchIDs
+				globals.searchIDs.push(rndID);
 				
 			}
+			
+			var newImageDisplay: ImageDisplay = new ImageDisplay(globals.searchIDs);
+			globals.guiObjects["labelTotalResults"].text = "Current total results   " + globals.searchIDs.length;
 			
 			trace("Main: loading random images");
 			
@@ -161,10 +156,29 @@ package {
 			
 		}
 		
+		public function destroyActiveSuggestions(): void {
+		
+			for (var j: Number = 0; j <= globals.activeSuggestions.length - 1; j++) {
+			
+				globals.myStage.removeChild(globals.activeSuggestions[j]);
+			
+			}
+			
+			// clear filter list
+			globals.activeSuggestions = [];
+			
+		}
+		
 		public function destroySingleImage(): void {
 		
 			globals.myStage.removeChild(globals.singleImage);
 			globals.singleImage = "";
+		
+		}
+		
+		public function destroyMetaView(): void {
+		
+			globals.myStage.removeChild(globals.metaView);
 		
 		}
 	

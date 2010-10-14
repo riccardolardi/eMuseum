@@ -51,28 +51,16 @@ package {
 					inputNewFilter();
 					break;
 					
-				case "buttonRefresh":
-					buttonRefresh();
-					break;
-					
 				case "areaSuggestions":
 					areaSuggestions();
 					break;
 					
-				case "labelSort":
-					labelSort();
+				case "titleSuggestions":
+					titleSuggestions();
 					break;
 					
-				case "buttonSortDate":
-					buttonSortDate();
-					break;
-					
-				case "buttonSortName":
-					buttonSortName();
-					break;
-					
-				case "buttonSortCountry":
-					buttonSortCountry();
+				case "labelTotalResults":
+					labelTotalResults();
 					break;
 					
 				case "labelPage":
@@ -168,7 +156,7 @@ package {
 			var areaFilter: Shape = new Shape();
 			areaFilter.graphics.lineStyle(1, 0x7A7A7A);
 			areaFilter.graphics.beginFill(0xEDEDED);
-			areaFilter.graphics.drawRoundRect(10, 50, 300, 400, 5);
+			areaFilter.graphics.drawRoundRect(10, 50, 300, 364, 5);
 			areaFilter.graphics.endFill();
 
 			globals.myStage.addChild(areaFilter);
@@ -185,7 +173,28 @@ package {
 			
 			globals.myStage.addChild(customBackground);
 			
+			// title
+			var titleText: TextField = new TextField();
+			customFormat.size = 16;
+			titleText.defaultTextFormat = customFormat;
+			titleText.selectable = false;
+			titleText.text = "Active search filters";
+			titleText.x = 20;
+			titleText.y = 60;
+			titleText.autoSize = TextFieldAutoSize.LEFT;
+			
+			globals.myStage.addChild(titleText);
+			
+			// title rule
+			var horizontalRule: Shape = new Shape();
+			horizontalRule.graphics.lineStyle(1, 0x7A7A7A);
+			horizontalRule.graphics.moveTo(18, 80);
+			horizontalRule.graphics.lineTo(302, 80);
+
+			globals.myStage.addChild(horizontalRule);
+			
 			// textfield
+			customFormat.size = 12;
 			customTextField.defaultTextFormat = customFormat;
 			customTextField.selectable = true;
 			customTextField.type = TextFieldType.INPUT;
@@ -211,99 +220,61 @@ package {
 		
 		}
 		
-		public function buttonRefresh(): void {
-		
-			// background
-			var customButton: Loader = new Loader();
-			var customRequest: URLRequest = new URLRequest("img/refresh.png");
-			customButton.load(customRequest);
-			customButton.x = 20;
-			customButton.y = 415;
-			
-			customButton.addEventListener(MouseEvent.CLICK, function(){onClick(elementName);});
-			globals.myStage.addChild(customButton);
-		
-			// label
-			customFormat.color = 0xFFFFFF;
-			customTextField.defaultTextFormat = customFormat;
-			customTextField.text = "Refresh";
-			customTextField.x = 130;
-			customTextField.y = 418;
-			customTextField.autoSize = TextFieldAutoSize.LEFT;
-			
-			globals.guiObjects[elementName] = customTextField;
-			customTextField.addEventListener(MouseEvent.CLICK, function(){onClick(elementName);});
-			globals.myStage.addChild(customTextField);
-		
-		}
-		
 		public function areaSuggestions(): void {
 		
 			var areaSuggestions: Shape = new Shape();
 			areaSuggestions.graphics.lineStyle(1, 0x7A7A7A);
 			areaSuggestions.graphics.beginFill(0xEDEDED);
-			areaSuggestions.graphics.drawRoundRect(10, 465, 300, 288, 5);
+			areaSuggestions.graphics.drawRoundRect(10, 425, 300, 328, 5);
 			areaSuggestions.graphics.endFill();
 			
 			globals.myStage.addChild(areaSuggestions);
 		
 		}
 		
-		public function labelSort(): void {
+		public function titleSuggestions(): void {
 		
+			// title
+			var titleText: TextField = new TextField();
+			customFormat.size = 16;
+			titleText.defaultTextFormat = customFormat;
+			titleText.selectable = false;
+			titleText.text = "Filter suggestions";
+			titleText.x = 20;
+			titleText.y = 435;
+			titleText.autoSize = TextFieldAutoSize.LEFT;
+			
+			globals.myStage.addChild(titleText);
+			
+			// title rule
+			var horizontalRule: Shape = new Shape();
+			horizontalRule.graphics.lineStyle(1, 0x7A7A7A);
+			horizontalRule.graphics.moveTo(18, 455);
+			horizontalRule.graphics.lineTo(302, 455);
+
+			globals.myStage.addChild(horizontalRule);
+		
+		}
+		
+		public function labelTotalResults(): void {
+
+			customFormat.color = 0x7A7A7A;
 			customTextField.defaultTextFormat = customFormat;
-			customTextField.text = "Sort";
+			customTextField.text = "Current total results   12";
 			customTextField.x = 350;
 			customTextField.y = 50;
 			customTextField.autoSize = TextFieldAutoSize.LEFT;
 			
 			globals.guiObjects[elementName] = customTextField;
 			globals.myStage.addChild(customTextField);
-		
-		}
-		
-		public function buttonSortDate(): void {
-		
-			customFormat.color = 0x009FE3;
-			customTextField.defaultTextFormat = customFormat;
-			customTextField.text = "Date";
-			customTextField.x = 380;
-			customTextField.y = 50;
-			customTextField.autoSize = TextFieldAutoSize.LEFT;
 			
-			globals.guiObjects[elementName] = customTextField;
-			customTextField.addEventListener(MouseEvent.CLICK, function(){onClick(elementName);});
-			globals.myStage.addChild(customTextField);
-		
-		}
-		
-		public function buttonSortName(): void {
-		
-			customFormat.color = 0x009FE3;
-			customTextField.defaultTextFormat = customFormat;
-			customTextField.text = "Name";
-			customTextField.x = 410;
-			customTextField.y = 50;
-			customTextField.autoSize = TextFieldAutoSize.LEFT;
-			
-			globals.guiObjects[elementName] = customTextField;
-			customTextField.addEventListener(MouseEvent.CLICK, function(){onClick(elementName);});
-			globals.myStage.addChild(customTextField);
-		
-		}
-		
-		public function buttonSortCountry(): void {
-		
-			customFormat.color = 0x009FE3;
-			customTextField.defaultTextFormat = customFormat;
-			customTextField.text = "Country";
-			customTextField.x = 448;
-			customTextField.y = 50;
-			customTextField.autoSize = TextFieldAutoSize.LEFT;
-			
-			globals.guiObjects[elementName] = customTextField;
-			customTextField.addEventListener(MouseEvent.CLICK, function(){onClick(elementName);});
-			globals.myStage.addChild(customTextField);
+			var horizontalRule: Shape = new Shape();
+			horizontalRule.graphics.lineStyle(1, 0x7A7A7A);
+			horizontalRule.graphics.moveTo(350, 67);
+			horizontalRule.graphics.lineTo(950, 67);
+
+			globals.guiObjects["infoRule"] = horizontalRule;
+			globals.myStage.addChild(horizontalRule);
 		
 		}
 		

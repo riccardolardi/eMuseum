@@ -15,7 +15,9 @@ package {
 		public static var activeFilters: Array = new Array();
 		public static var currentPage: Number = 1;
 		public static var singleImage: Object = new Object();
-	
+		public static var metaView: Object = new Object();
+		public static var activeSuggestions: Array = new Array();
+		
 	}
 	
 }
