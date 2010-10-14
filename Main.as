@@ -6,6 +6,8 @@ package {
 	import flash.text.*;
 	
 	import globals;
+	import GUIelement;
+	import ImageObj;
 	
 	public class Main extends Sprite {
 	
@@ -27,7 +29,8 @@ package {
 			createHeader();
 			createFilter();
 			createSuggestions();
-			createContent();
+			createSort();
+			createPager();
 			
 			// load random images
 			createRandomImages();
@@ -67,7 +70,7 @@ package {
 		
 		}
 		
-		public function createContent(): void {
+		public function createSort(): void {
 		
 			// create sort label
 			var labelSort: GUIelement = new GUIelement("labelSort");
@@ -75,14 +78,8 @@ package {
 			// create sort date button
 			var buttonSortDate: GUIelement = new GUIelement("buttonSortDate");
 			
-			// create sort separator rule 1
-			var separatorRule1: GUIelement = new GUIelement("separatorRule1");
-			
 			// create sort name button
 			var buttonSortName: GUIelement = new GUIelement("buttonSortName");
-			
-			// create sort separator rule 2
-			var separatorRule2: GUIelement = new GUIelement("separatorRule2");
 			
 			// create sort country button
 			var buttonSortCountry: GUIelement = new GUIelement("buttonSortCountry");
@@ -95,7 +92,7 @@ package {
 			var labelPage: GUIelement = new GUIelement("labelPage");
 			
 			// create page back button
-			var buttonPageBack: GUIelement = new GUIelement("buttonPageback");
+			var buttonPageBack: GUIelement = new GUIelement("buttonPageBack");
 			
 			// create label page current
 			var labelPageCurrent: GUIelement = new GUIelement("labelPageCurrent");
@@ -113,7 +110,61 @@ package {
 		
 		public function createRandomImages(): void {
 		
-			// TODO
+			if (globals.imgList.length > 0) {
+			
+				destroyImgList();
+			
+			} else {
+		
+				// create 12 images
+				for (var i: Number = 0; i <= 11; i++) {
+				
+					// random id
+					var rndID: Number = Math.round(Math.random() * 6000) + 2500;
+					
+					// fill searchIDs
+					globals.searchIDs.push(rndID);
+					
+				}
+				
+				var newImageDisplay: ImageDisplay = new ImageDisplay(globals.searchIDs);
+				
+			}
+			
+			trace("Main: loading random images");
+			
+		}
+		
+		public function destroyImgList(): void {
+		
+			for (var j: Number = 0; j <= globals.imgList.length - 1; j++) {
+			
+				globals.myStage.removeChild(globals.imgList[j]);
+			
+			}
+			
+			// clear image list
+			globals.imgList = [];
+			
+		}
+		
+		public function destroyActiveFilters(): void {
+		
+			for (var j: Number = 0; j <= globals.activeFilters.length - 1; j++) {
+			
+				globals.myStage.removeChild(globals.activeFilters[j]);
+			
+			}
+			
+			// clear filter list
+			globals.activeFilters = [];
+			
+		}
+		
+		public function destroySingleImage(): void {
+		
+			globals.myStage.removeChild(globals.singleImage);
+			globals.singleImage = "";
 		
 		}
 	
