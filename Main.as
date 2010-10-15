@@ -5,6 +5,9 @@ package {
 	import flash.events.*;
 	import flash.text.*;
 	
+	import com.greensock.TweenLite;
+	import com.greensock.TweenMax;
+	
 	import globals;
 	import GUIelement;
 	import ImageObj;
@@ -172,12 +175,24 @@ package {
 		public function destroySingleImage(): void {
 		
 			globals.myStage.removeChild(globals.singleImage);
-			globals.singleImage = "";
 		
 		}
 		
 		public function destroyMetaView(): void {
 		
+			for each (var newImg in globals.imgList) {
+				TweenLite.to(newImg, 1, {alpha:1});
+			}
+			
+			TweenLite.to(globals.guiObjects["labelTotalResults"], 1, {alpha:1});
+			TweenLite.to(globals.guiObjects["labelPage"], 1, {alpha:1});
+			TweenLite.to(globals.guiObjects["buttonPageBack"], 1, {alpha:1});
+			TweenLite.to(globals.guiObjects["labelPageCurrent"], 1, {alpha:1});
+			TweenLite.to(globals.guiObjects["buttonPageForward"], 1, {alpha:1});
+			TweenLite.to(globals.guiObjects["labelPageOf"], 1, {alpha:1});
+			TweenLite.to(globals.guiObjects["labelPageTotal"], 1, {alpha:1});
+			TweenLite.to(globals.guiObjects["infoRule"], 1, {alpha:1});
+			
 			globals.myStage.removeChild(globals.metaView);
 		
 		}

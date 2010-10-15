@@ -72,7 +72,7 @@ package {
 			globals.myStage.destroyActiveSuggestions();
 			
 			// create suggestions
-			for (var l: Number = 0; l <= Math.round(Math.random() * 7 + 3); l++) {
+			for (var l: Number = 0; l <= 7; l++) {
 				var newSuggestion: SearchSuggestion = new SearchSuggestion();
 				globals.myStage.addChild(newSuggestion);
 			}
@@ -84,6 +84,7 @@ package {
 			var totalPages: Number;
 			totalPages = Math.round(globals.totalResults / 12);
 		
+			if (totalPages == 0) {totalPages = 1;}
 			globals.guiObjects["labelPageTotal"].text = totalPages;
 		
 		}

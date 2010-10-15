@@ -5,6 +5,9 @@ package {
 	import flash.events.*;
 	import flash.text.*;
 	
+	import com.greensock.TweenLite;
+	import com.greensock.TweenMax;
+	
 	import globals;
 	
 	public class SearchSuggestion extends Sprite {
@@ -29,9 +32,10 @@ package {
 		public function loadedXML(inEvent: Event): void {
 		
 			xmlData = new XML(inEvent.target.data);
-			newSuggestion = (xmlData.marken_liste.marke.wert.text());
+			var tmpVar: XMLList = (xmlData.marken_liste.marke.(schluessel == "Stichwort Bildinhalt").wert);
+			newSuggestion = tmpVar[Math.round(Math.random() * tmpVar.length)].toString();
 			
-			newSuggestion = newSuggestion.substr(0, newSuggestion.indexOf(" "));
+			newSuggestion.substr(0, newSuggestion.indexOf(" ") + 1);
 			
 			if (newSuggestion.length > 25) {
 				newSuggestion = newSuggestion.substr(0, 25) + " [...]";
@@ -44,7 +48,6 @@ package {
 		public function createSuggestion(): void {
 		
 			var suggestionCount: Number = globals.activeSuggestions.length;
-			var suggestionName: String = newSuggestion;
 		
 			customFormat.color = 0x7A7A7A;
 			customFormat.size = 12;
@@ -55,12 +58,14 @@ package {
 			customTextField.selectable = false;
 			
 			customTextField.defaultTextFormat = customFormat;
-			customTextField.text = suggestionName + "     " + Math.round(Math.random() * 1500);
+			customTextField.text = newSuggestion + "     " + Math.round(Math.random() * 1500);
 			customTextField.x = 170;
 			customTextField.y = 470 + (suggestionCount * 30);
 			customTextField.autoSize = TextFieldAutoSize.RIGHT;
 			
+			customTextField.alpha = 0;
 			addChild(customTextField);
+			TweenLite.to(customTextField, 1, {alpha:1});
 			
 			var customButton: Loader = new Loader();
 			var customRequest: URLRequest = new URLRequest("img/add.png");
@@ -69,14 +74,17 @@ package {
 			customButton.y = customTextField.y - 3;
 			
 			customButton.addEventListener(MouseEvent.CLICK, onClick);
+			customButton.alpha = 0;
 			addChild(customButton);
+			TweenLite.to(customButton, 1, {alpha:1});
 			globals.activeSuggestions.push(this);
 		
 		}
 		
 		public function onClick(inEvent: Event): void {
 		
-			// add suggestion to filter
+			var newSearchFilter: SearchFilter = new SearchFilter(newSuggestion);
+			globals.myStage.addChild(newSearchFilter);
 		
 		}
 		

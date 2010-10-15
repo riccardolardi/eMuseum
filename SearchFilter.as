@@ -5,6 +5,9 @@ package {
 	import flash.events.*;
 	import flash.text.*;
 	
+	import com.greensock.TweenLite;
+	import com.greensock.TweenMax;
+	
 	import globals;
 	
 	public class SearchFilter extends Sprite {
@@ -62,7 +65,9 @@ package {
 			customTextField.y = 100 + (filterCount * 30);
 			customTextField.autoSize = TextFieldAutoSize.RIGHT;
 			
+			customTextField.alpha = 0;
 			addChild(customTextField);
+			TweenLite.to(customTextField, 1, {alpha:1});
 			
 			var customButton: Loader = new Loader();
 			var customRequest: URLRequest = new URLRequest("img/del.png");
@@ -71,7 +76,9 @@ package {
 			customButton.y = customTextField.y - 3;
 			
 			customButton.addEventListener(MouseEvent.CLICK, onClick);
+			customButton.alpha = 0;
 			addChild(customButton);
+			TweenLite.to(customButton, 1, {alpha:1});
 			globals.activeFilters.push(this);
 			
 			feedFilterIDs();
@@ -152,12 +159,18 @@ package {
 				
 				globals.guiObjects["labelTotalResults"].text = "Current total results   " + globals.searchIDs.length;
 				
-				// create images
-				globals.myStage.destroyImgList();
-				var newImageDisplay: ImageDisplay = new ImageDisplay(globals.searchIDs);
 				
-			//trace(globals.filterIDs1);
-			//trace(globals.activeFilters.length);
+				// destroy things
+				globals.myStage.destroyImgList();
+				// globals.myStage.destroyMetaView();
+				// globals.myStage.destroySingleImage();
+				
+				// set current page to first
+				globals.guiObjects["labelPageCurrent"].text = 1;
+				globals.currentPage = 1;
+				
+				// create images
+				var newImageDisplay: ImageDisplay = new ImageDisplay(globals.searchIDs);
 		
 		}
 		

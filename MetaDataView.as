@@ -145,7 +145,7 @@ package {
 			customButton2.x = customButton1.x + 30;
 			customButton2.y = customButton1.y;
 			
-			customButton1.addEventListener(MouseEvent.CLICK, onNameSearchClick);
+			customButton2.addEventListener(MouseEvent.CLICK, onNameSearchClick);
 			addChild(customButton2);
 			
 		}
@@ -203,7 +203,7 @@ package {
 			customButton2.x = customButton1.x + 30;
 			customButton2.y = customButton1.y;
 			
-			customButton1.addEventListener(MouseEvent.CLICK, onCountrySearchClick);
+			customButton2.addEventListener(MouseEvent.CLICK, onCountrySearchClick);
 			addChild(customButton2);
 			
 		}
@@ -261,7 +261,7 @@ package {
 			customButton2.x = customButton1.x + 30;
 			customButton2.y = customButton1.y;
 			
-			customButton1.addEventListener(MouseEvent.CLICK, onDateSearchClick);
+			customButton2.addEventListener(MouseEvent.CLICK, onDateSearchClick);
 			addChild(customButton2);
 			
 		}
@@ -319,7 +319,7 @@ package {
 			customButton2.x = customButton1.x + 30;
 			customButton2.y = customButton1.y;
 			
-			customButton1.addEventListener(MouseEvent.CLICK, onTechnologySearchClick);
+			customButton2.addEventListener(MouseEvent.CLICK, onTechnologySearchClick);
 			addChild(customButton2);
 			
 		}
@@ -363,7 +363,7 @@ package {
 			customButton1.x = customTextField1.x + 610;
 			customButton1.y = customTextField1.y + 26;
 			
-			customButton1.addEventListener(MouseEvent.CLICK, onNameAddClick);
+			customButton1.addEventListener(MouseEvent.CLICK, onPeopleAddClick);
 			addChild(customButton1);
 			
 			// new search button
@@ -373,7 +373,7 @@ package {
 			customButton2.x = customButton1.x + 30;
 			customButton2.y = customButton1.y;
 			
-			customButton1.addEventListener(MouseEvent.CLICK, onNameSearchClick);
+			customButton2.addEventListener(MouseEvent.CLICK, onPeopleSearchClick);
 			addChild(customButton2);
 			
 		}
@@ -417,7 +417,7 @@ package {
 			customButton1.x = customTextField1.x + 610;
 			customButton1.y = customTextField1.y + 26;
 			
-			customButton1.addEventListener(MouseEvent.CLICK, onNameAddClick);
+			customButton1.addEventListener(MouseEvent.CLICK, onContentAddClick);
 			addChild(customButton1);
 			
 			// new search button
@@ -427,7 +427,7 @@ package {
 			customButton2.x = customButton1.x + 30;
 			customButton2.y = customButton1.y;
 			
-			customButton1.addEventListener(MouseEvent.CLICK, onNameSearchClick);
+			customButton2.addEventListener(MouseEvent.CLICK, onContentSearchClick);
 			addChild(customButton2);
 			
 		}
@@ -435,68 +435,103 @@ package {
 		public function onCloseClick(inEvent: MouseEvent): void {
 				
 			// show content
-			for each (var newImg in globals.imgList) {
-				TweenLite.to(newImg, 1, {alpha:1});
-			}
-			
-			TweenLite.to(globals.guiObjects["labelTotalResults"], 1, {alpha:1});
-			TweenLite.to(globals.guiObjects["labelPage"], 1, {alpha:1});
-			TweenLite.to(globals.guiObjects["buttonPageBack"], 1, {alpha:1});
-			TweenLite.to(globals.guiObjects["labelPageCurrent"], 1, {alpha:1});
-			TweenLite.to(globals.guiObjects["buttonPageForward"], 1, {alpha:1});
-			TweenLite.to(globals.guiObjects["labelPageOf"], 1, {alpha:1});
-			TweenLite.to(globals.guiObjects["labelPageTotal"], 1, {alpha:1});
-			TweenLite.to(globals.guiObjects["infoRule"], 1, {alpha:1});
-			
 			globals.myStage.destroyMetaView();
 		
 		}
 		
 		public function onNameAddClick(inEvent: MouseEvent): void {
 		
-			
+			var newSearchFilter: SearchFilter = new SearchFilter(imgName);
+			globals.myStage.addChild(newSearchFilter);
+			onCloseClick(null);
 		
 		}
 		
 		public function onNameSearchClick(inEvent: MouseEvent): void {
 		
-			
+			globals.myStage.destroyActiveFilters();
+			var newSearch: NewSearch = new NewSearch(imgName);
+			onCloseClick(null);
 		
 		}
 		
 		public function onCountryAddClick(inEvent: MouseEvent): void {
 		
-			
+			var newSearchFilter: SearchFilter = new SearchFilter(imgCountry);
+			globals.myStage.addChild(newSearchFilter);
+			onCloseClick(null);
 		
 		}
 		
 		public function onCountrySearchClick(inEvent: MouseEvent): void {
 		
-			
+			globals.myStage.destroyActiveFilters();
+			var newSearch: NewSearch = new NewSearch(imgCountry);
+			onCloseClick(null);
 		
 		}
 		
 		public function onDateAddClick(inEvent: MouseEvent): void {
 		
-			
+			var newSearchFilter: SearchFilter = new SearchFilter(imgDate);
+			globals.myStage.addChild(newSearchFilter);
+			onCloseClick(null);
 		
 		}		
 		
 		public function onDateSearchClick(inEvent: MouseEvent): void {
 		
-			
+			globals.myStage.destroyActiveFilters();
+			var newSearch: NewSearch = new NewSearch(imgDate);
+			onCloseClick(null);
 		
 		}
 		
 		public function onTechnologyAddClick(inEvent: MouseEvent): void {
 		
-			
+			var newSearchFilter: SearchFilter = new SearchFilter(imgTechnology);
+			globals.myStage.addChild(newSearchFilter);
+			onCloseClick(null);
 		
 		}		
 		
 		public function onTechnologySearchClick(inEvent: MouseEvent): void {
 		
-			
+			globals.myStage.destroyActiveFilters();
+			var newSearch: NewSearch = new NewSearch(imgTechnology);
+			onCloseClick(null);
+		
+		}
+		
+		public function onPeopleAddClick(inEvent: MouseEvent): void {
+		
+			var newSearchFilter: SearchFilter = new SearchFilter(imgPeople[0]);
+			globals.myStage.addChild(newSearchFilter);
+			onCloseClick(null);
+		
+		}		
+		
+		public function onPeopleSearchClick(inEvent: MouseEvent): void {
+		
+			globals.myStage.destroyActiveFilters();
+			var newSearch: NewSearch = new NewSearch(imgPeople[0]);
+			onCloseClick(null);
+		
+		}
+		
+		public function onContentAddClick(inEvent: MouseEvent): void {
+		
+			var newSearchFilter: SearchFilter = new SearchFilter(imgContent[0]);
+			globals.myStage.addChild(newSearchFilter);
+			onCloseClick(null);
+		
+		}		
+		
+		public function onContentSearchClick(inEvent: MouseEvent): void {
+		
+			globals.myStage.destroyActiveFilters();
+			var newSearch: NewSearch = new NewSearch(imgContent[0]);
+			onCloseClick(null);
 		
 		}
 		

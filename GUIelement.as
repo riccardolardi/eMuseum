@@ -377,22 +377,6 @@ package {
 					globals.myStage.addChild(newSearchFilter);
 					break;
 					
-				case "refreshButton":
-					// TODO
-					break;
-					
-				case "buttonSortDate":
-					// TODO
-					break;
-					
-				case "buttonSortName":
-					// TODO
-					break;
-					
-				case "buttonSortCountry":
-					// TODO
-					break;
-					
 				case "buttonPageBack":
 					if (globals.currentPage < 2) {
 						// nuthin'
