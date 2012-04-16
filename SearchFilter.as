@@ -4,6 +4,7 @@ package {
 	import flash.net.*;
 	import flash.events.*;
 	import flash.text.*;
+	import flash.ui.Mouse;
 	
 	import com.greensock.TweenLite;
 	import com.greensock.TweenMax;
@@ -76,6 +77,9 @@ package {
 			customButton.y = customTextField.y - 3;
 			
 			customButton.addEventListener(MouseEvent.CLICK, onClick);
+			customButton.addEventListener(MouseEvent.ROLL_OVER, onRoll);
+			customButton.addEventListener(MouseEvent.ROLL_OUT, onRoll);
+			
 			customButton.alpha = 0;
 			addChild(customButton);
 			TweenLite.to(customButton, 1, {alpha:1});
@@ -162,8 +166,8 @@ package {
 				
 				// destroy things
 				globals.myStage.destroyImgList();
-				// globals.myStage.destroyMetaView();
-				// globals.myStage.destroySingleImage();
+				globals.myStage.destroyMetaView();
+				globals.myStage.destroySingleImage();
 				
 				// set current page to first
 				globals.guiObjects["labelPageCurrent"].text = 1;
@@ -175,6 +179,10 @@ package {
 		}
 		
 		public function onClick(inEvent: Event): void {
+		
+			// destroy things
+			globals.myStage.destroySingleImage();
+			globals.myStage.destroyMetaView();
 		
 			globals.activeFilters.splice(globals.activeFilters.indexOf(this), 1);
 			globals.myStage.removeChild(this);
@@ -206,6 +214,17 @@ package {
 			}
 			return schnittlist;
 
+		}
+		
+		public function onRoll(inEvent: Event) {
+			switch (inEvent.type) {
+				case "rollOver":
+					Mouse.cursor="button";
+					break;
+				case "rollOut":
+					Mouse.cursor="auto";
+					break;
+			}
 		}
 		
 	}

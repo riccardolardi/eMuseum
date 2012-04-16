@@ -29,6 +29,7 @@ package {
 			globals.myStage = this;
 			
 			// create gui elements
+			createMainArea();
 			createHeader();
 			createFilter();
 			createSuggestions();
@@ -37,6 +38,12 @@ package {
 			
 			// load random images
 			createRandomImages();
+		
+		}
+		
+		public function createMainArea(): void {
+		
+			var mainArea: GUIelement = new GUIelement("mainArea");
 		
 		}
 		
@@ -174,14 +181,23 @@ package {
 		
 		public function destroySingleImage(): void {
 		
-			globals.myStage.removeChild(globals.singleImage);
+			if (globals.singleImage[0]) {
+				globals.myStage.removeChild(globals.singleImage[0]);
+				globals.singleImage = [];
+			}
 		
 		}
 		
-		public function destroyMetaView(): void {
+		public function destroyMetaView(inWithImgList: Boolean = false): void {
 		
-			for each (var newImg in globals.imgList) {
-				TweenLite.to(newImg, 1, {alpha:1});
+			if (inWithImgList == false) {
+		
+				for each (var newImg in globals.imgList) {
+					TweenLite.to(newImg, 1, {alpha:1});
+				}
+			
+			} else {
+				destroyImgList();
 			}
 			
 			TweenLite.to(globals.guiObjects["labelTotalResults"], 1, {alpha:1});
@@ -193,7 +209,10 @@ package {
 			TweenLite.to(globals.guiObjects["labelPageTotal"], 1, {alpha:1});
 			TweenLite.to(globals.guiObjects["infoRule"], 1, {alpha:1});
 			
-			globals.myStage.removeChild(globals.metaView);
+			if (globals.metaView[0]) {
+				globals.myStage.removeChild(globals.metaView[0]);
+				globals.metaView = [];
+			}
 		
 		}
 	

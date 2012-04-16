@@ -6,6 +6,7 @@ package {
 	import flash.text.*;
 	import XML;
 	import XMLList;
+	import flash.ui.Mouse;
 	
 	import com.greensock.TweenLite;
 	import com.greensock.TweenMax;
@@ -44,6 +45,8 @@ package {
 			xmlLoader.load(new URLRequest("http://mia-web.zhdk.ch/sobjekte/xml/" + imgID));
 			
 			addEventListener(MouseEvent.CLICK, onClick);
+			addEventListener(MouseEvent.ROLL_OVER, onRoll);
+			addEventListener(MouseEvent.ROLL_OUT, onRoll);
 		
 		}
 		
@@ -76,9 +79,20 @@ package {
 		public function onClick(inEvent: Event): void {
 		
 			var newSingleImage: SingleImage = new SingleImage(imgFilePath, imgTitle, imgID);
-			globals.singleImage = newSingleImage;
+			globals.singleImage.push(newSingleImage);
 			globals.myStage.addChild(newSingleImage);
 		
+		}
+		
+		public function onRoll(inEvent: Event) {
+			switch (inEvent.type) {
+				case "rollOver":
+					Mouse.cursor="button";
+					break;
+				case "rollOut":
+					Mouse.cursor="auto";
+					break;
+			}
 		}
 		
 	}

@@ -4,6 +4,7 @@ package {
 	import flash.net.*;
 	import flash.events.*;
 	import flash.text.*;
+	import flash.ui.Mouse;
 	
 	import com.greensock.TweenLite;
 	import com.greensock.TweenMax;
@@ -73,6 +74,8 @@ package {
 			TweenLite.to(newImage, 1, {alpha:1});
 			
 			addEventListener(MouseEvent.CLICK, onClick);
+			addEventListener(MouseEvent.ROLL_OVER, onRoll);
+			addEventListener(MouseEvent.ROLL_OUT, onRoll);
 		
 		}
 		
@@ -83,10 +86,21 @@ package {
 			
 			// display meta data view
 			var displayMetaDataView: MetaDataView = new MetaDataView(imgID);
-			globals.metaView = displayMetaDataView;
+			globals.metaView.push(displayMetaDataView);
 			globals.myStage.addChild(displayMetaDataView);	
 			globals.myStage.destroySingleImage();
 		
+		}
+		
+		public function onRoll(inEvent: Event) {
+			switch (inEvent.type) {
+				case "rollOver":
+					Mouse.cursor="button";
+					break;
+				case "rollOut":
+					Mouse.cursor="auto";
+					break;
+			}
 		}
 		
 	}

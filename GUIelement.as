@@ -4,6 +4,7 @@ package {
 	import flash.net.*;
 	import flash.events.*;
 	import flash.text.*;
+	import flash.ui.Mouse;
 	
 	import globals;
 	
@@ -30,6 +31,10 @@ package {
 			elementName = inType;
 		
 			switch (elementName) {
+			
+				case "mainArea":
+					mainArea();
+					break;
 			
 				case "labelAppTitle":
 					labelAppTitle();
@@ -91,6 +96,18 @@ package {
 		
 		}
 		
+		public function mainArea(): void {
+		
+			var areaMain: Shape = new Shape();
+			areaMain.graphics.lineStyle(1, 0x7A7A7A);
+			areaMain.graphics.beginFill(0xFFFFFF);
+			areaMain.graphics.drawRoundRect(0, 0, 1024, 768, 5);
+			areaMain.graphics.endFill();
+
+			globals.myStage.addChild(areaMain);
+		
+		}
+		
 		public function labelAppTitle(): void {
 		
 			customFormat.size = 18;
@@ -136,6 +153,9 @@ package {
 			customButton.y = customTextField.y - 3;
 			
 			customButton.addEventListener(MouseEvent.CLICK, function(){onClick(elementName);});
+			customButton.addEventListener(MouseEvent.ROLL_OVER, onRoll);
+			customButton.addEventListener(MouseEvent.ROLL_OUT, onRoll);	
+			
 			globals.myStage.addChild(customButton);
 		
 		}
@@ -216,6 +236,8 @@ package {
 			customButton.y = customTextField.y - 3;
 			
 			customButton.addEventListener(MouseEvent.CLICK, function(){onClick(elementName);});
+			customButton.addEventListener(MouseEvent.ROLL_OVER, onRoll);
+			customButton.addEventListener(MouseEvent.ROLL_OUT, onRoll);	
 			globals.myStage.addChild(customButton);
 		
 		}
@@ -303,6 +325,8 @@ package {
 			
 			globals.guiObjects[elementName] = customTextField;
 			customTextField.addEventListener(MouseEvent.CLICK, function(){onClick(elementName);});
+			customTextField.addEventListener(MouseEvent.ROLL_OVER, onRoll);
+			customTextField.addEventListener(MouseEvent.ROLL_OUT, onRoll);	
 			globals.myStage.addChild(customTextField);
 		
 		}
@@ -332,6 +356,8 @@ package {
 			
 			globals.guiObjects[elementName] = customTextField;
 			customTextField.addEventListener(MouseEvent.CLICK, function(){onClick(elementName);});
+			customTextField.addEventListener(MouseEvent.ROLL_OVER, onRoll);
+			customTextField.addEventListener(MouseEvent.ROLL_OUT, onRoll);	
 			globals.myStage.addChild(customTextField);
 		
 		}
@@ -401,6 +427,17 @@ package {
 			
 			}
 		
+		}
+		
+		public function onRoll(inEvent: Event) {
+			switch (inEvent.type) {
+				case "rollOver":
+					Mouse.cursor="button";
+					break;
+				case "rollOut":
+					Mouse.cursor="auto";
+					break;
+			}
 		}
 	
 	}

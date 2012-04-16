@@ -6,6 +6,8 @@ ZHdK eMuseum Serach Gallery
 Daniel Schmider, Sebastian Homberger, Riccardo Lardi
 Prof. Jürgen Späth, Dipl. Inform. Magnus Rembold
 
+GitHub: http://github.com/alberto2000/eMuseum
+
 ---
 
 INTRODUCTION This project aimed to redesign the current eMuseum search engine (http://sammlungen-archive.zhdk.ch/code/emuseum.asp) by finding an alternative concept to it and develop it in Flash/AS3.

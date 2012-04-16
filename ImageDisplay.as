@@ -72,7 +72,7 @@ package {
 			globals.myStage.destroyActiveSuggestions();
 			
 			// create suggestions
-			for (var l: Number = 0; l <= 7; l++) {
+			for (var l: Number = 0; l <= 5; l++) {
 				var newSuggestion: SearchSuggestion = new SearchSuggestion();
 				globals.myStage.addChild(newSuggestion);
 			}

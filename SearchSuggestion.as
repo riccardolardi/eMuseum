@@ -4,6 +4,7 @@ package {
 	import flash.net.*;
 	import flash.events.*;
 	import flash.text.*;
+	import flash.ui.Mouse;
 	
 	import com.greensock.TweenLite;
 	import com.greensock.TweenMax;
@@ -74,6 +75,9 @@ package {
 			customButton.y = customTextField.y - 3;
 			
 			customButton.addEventListener(MouseEvent.CLICK, onClick);
+			customButton.addEventListener(MouseEvent.ROLL_OVER, onRoll);
+			customButton.addEventListener(MouseEvent.ROLL_OUT, onRoll);
+			
 			customButton.alpha = 0;
 			addChild(customButton);
 			TweenLite.to(customButton, 1, {alpha:1});
@@ -87,6 +91,17 @@ package {
 			globals.myStage.addChild(newSearchFilter);
 		
 		}
+		
+		public function onRoll(inEvent: Event) {
+			switch (inEvent.type) {
+				case "rollOver":
+					Mouse.cursor="button";
+					break;
+				case "rollOut":
+					Mouse.cursor="auto";
+					break;
+			}
+		}	
 		
 	}
 	
